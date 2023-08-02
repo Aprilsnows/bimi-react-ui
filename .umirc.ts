@@ -32,7 +32,7 @@ export default defineConfig({
     type: 'hash', //采用hash模式刷新路由不会丢失
   },
   navs: [
-    // null, // null 值代表保留约定式生成的导航，只做增量配置
+    // null, // null 值代表保留约定式生成的导航，只做增量配置1
     {
       title: '指南',
       path: '/guide',
