@@ -1,5 +1,5 @@
 ---
-title: bimi
+title: bimi-react
 order: 10
 hero:
   title: bimi Design
