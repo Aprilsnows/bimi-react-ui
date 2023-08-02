@@ -1,23 +1,24 @@
 ---
-title: Pagination 分页器
+title: Pagination 分页
 nav:
-  title: 通用
+  title: Data 数据展示
   path: /component
 group:
-  path: /component
+  path: /data
 ---
 
-# Pagination 分页器
+# Pagination 分页
 
-当数据量过多时，使用分页分解数据。
+> 采用分页的形式分隔长列表，每次只加载一个页面。当加载/渲染所有数据将花费很多时间时可切换页码浏览数据
 
-#### 何时使用
+### 基本使用
 
-<p>当加载/渲染所有数据将花费很多时间时；</p>
-<p>可切换页码浏览数据。</p>
+> 使用时传入数据总条数 <code src="./demo/index1.tsx" />
 
-## 基本使用
+### 更多
 
-<code src="./dome/index" />
+> 当数据过多时 <code src="./demo/index2.tsx" />
 
-<API></API>
+### Pagination 参数说明
+
+<API />

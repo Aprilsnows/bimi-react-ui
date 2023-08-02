@@ -1,24 +1,40 @@
 ---
 title: MessageBox 弹框
 nav:
-  title: 通用
+  title: Feedback 反馈组件
   path: /component
 group:
-  path: /component
+  path: /feedback
 ---
 
 # MessageBox 弹框
 
-模拟系统的消息提示框而实现的一套模态对话框组件，用于消息提示、确认消息和提交内容。
+> 模拟系统的消息提示框而实现的一套模态对话框组件，用于消息提示、确认消息和提交内容。
 
-#### 何时使用
+### 基本用法
 
-<h3>消息提示</h3>
-<p></p>
-<p>当用户进行操作时会被触发，该对话框中断用户操作，直到用户确认知晓后才可关闭</p>
+> MessageBox 组件的基本用法
 
-## 基本使用
+<code src="./demo/index1.tsx" />
 
-<code src="./demo/Modal.tsx" />
+### 自定义内容
 
-<API></API>
+> 设置 message 和 title 自定义标题和内容
+
+<code src="./demo/index2.tsx" />
+
+### 内容是否是 html 标签
+
+> 通过设置 useHTMLString 判断是否用 html 解析内容
+
+<code src="./demo/index3.tsx" />
+
+### 自定义事件
+
+> 通过 handleSubmit 绑定自定义事件，提交时触发
+
+<code src="./demo/index4.tsx" />
+
+### MessageBox 参数说明
+
+<API />

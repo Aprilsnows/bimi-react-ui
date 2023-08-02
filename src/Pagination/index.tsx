@@ -1,91 +1,172 @@
-import React, { useState, FC, memo, useMemo } from 'react';
+import React, { useMemo, FC, memo, useEffect, useState, useRef } from 'react';
+import Css from './index.module.less';
+import { PaginationProps } from './interface';
+import Icon from '../Icon';
 
-import './Pagination.less';
-
-import { PaginationProps, PaginationStyle } from './interface';
-
-const Pagination: FC<PaginationProps> = memo((props: any) => {
-  const { currentPage, totalPages, onPageChange, maxVisiblePages } = props;
-
-  const getPageRange = () => {
-    if (totalPages < maxVisiblePages) {
-      return Array.from({ length: totalPages }, (_, index) => index + 1);
-    }
-
-    if (totalPages <= maxVisiblePages) {
-      return Array.from({ length: totalPages }, (_, index) => index + 1);
-    } else if (currentPage <= Math.ceil(maxVisiblePages / 2)) {
-      const pages: any = [...Array(maxVisiblePages)].map((_, index) => index + 1);
-      pages.push('...');
-      pages.push(totalPages);
-      return pages;
-    } else if (currentPage >= totalPages - Math.floor(maxVisiblePages / 2)) {
-      const pages = [1, '...'];
-      for (let i = totalPages - maxVisiblePages + 1; i <= totalPages; i++) {
-        pages.push(i);
+const Pagination: FC<PaginationProps> = memo(
+  ({ defaultCurrent, defaultPageSize, total, pagelength, handleClick, go, showSumPage }) => {
+    let [num, setNum] = useState(0);
+    const inputValue: any = useRef(null);
+    const uls: any = useRef(null);
+    defaultCurrent = defaultCurrent ? defaultCurrent : 0;
+    go = go ? go : false;
+    showSumPage = showSumPage ? showSumPage : false;
+    let page = pagelength ? pagelength : 5;
+    const pagesize = defaultPageSize ? defaultPageSize : 10;
+    // 总页面数
+    const pageSum = useMemo(() => {
+      return Math.ceil(total / pagesize);
+    }, [total]);
+    // 响应式
+    let [indexPage, setIndex]: any = useState(null);
+    let [arr, setArr]: any = useState([]);
+    // 显示数
+    let list = function () {
+      let arr = [];
+      // console.log(page);
+      for (let i = 1; i <= page; i++) {
+        arr.push(i + num);
       }
-      return pages;
-    } else {
-      const pages = [1, '...'];
-      for (
-        let i = currentPage - Math.floor(maxVisiblePages / 2);
-        i <= currentPage + Math.floor(maxVisiblePages / 2);
-        i++
-      ) {
-        pages.push(i);
+      return arr;
+    };
+
+    // 改变颜色
+    function select(index: any) {
+      changeColor(index);
+    }
+
+    function changeColor(index: any) {
+      if (uls.current != null) {
+        if (uls.current.children != null) {
+          let lis = uls.current.children;
+
+          Array.from(lis).forEach((el: any, ind: any) => {
+            if (ind == index) {
+              el.className = Css['selected1'];
+            } else {
+              el.className = '';
+            }
+          });
+          // console.log(handleClick);
+
+          return handleClick ? handleClick({ value: index + num + 1 }) : null;
+        }
       }
-      pages.push('...');
-      pages.push(totalPages);
-      return pages;
     }
-  };
 
-  const handlePageChange = (page: any) => {
-    onPageChange(page);
-  };
-
-  const handlePreviousPage = () => {
-    if (currentPage > 1) {
-      onPageChange(currentPage - 1);
+    // 当前改变颜色的li
+    function ind() {
+      let lis = uls.current.children;
+      let ind = null;
+      lis.forEach((el: any, index: any) => {
+        if (el.className == Css['selected1']) {
+          ind = index;
+        }
+      });
+      return ind;
     }
-  };
-
-  const handleNextPage = () => {
-    if (currentPage < totalPages) {
-      onPageChange(currentPage + 1);
+    // 右
+    function rightGo() {
+      let sumlist = list().length;
+      let index: any = ind();
+      if (index + 1 < Math.ceil(sumlist / 2) || num + sumlist == pageSum) {
+        if (index < 4) {
+          select(index + 1);
+        }
+      } else {
+        if (num + page < pageSum) {
+          let nuwNum = num + 1;
+          setIndex(index);
+          setNum(() => nuwNum);
+        }
+      }
     }
-  };
+    // 左
+    function leftGo() {
+      let sumlist = list().length;
+      let index: any = ind();
+      if (index + 1 > Math.ceil(sumlist / 2) || num == 0) {
+        if (index > 0) {
+          select(index - 1);
+        }
+      } else {
+        if (num != 0) {
+          setNum(num - 1);
+        }
+      }
+    }
 
-  const pageRange = getPageRange();
+    function blurNum() {
+      if (inputValue.current.value.trim() === '') {
+        inputValue.current.value = '';
+        return;
+      }
 
-  return (
-    <div className="pagination">
-      <button disabled={currentPage === 1} onClick={handlePreviousPage}>
-        Previous
-      </button>
+      if (inputValue.current.value > pageSum || inputValue.current.value < 1) {
+        alert('没有该页数');
+      } else {
+        if (inputValue.current != null && inputValue.current.value <= pageSum) {
+          if (Number(inputValue.current.value) + list().length > pageSum) {
+            setNum(pageSum - list().length);
+            setIndex(Number(inputValue.current.value) - list().length - 1);
+          } else {
+            if (Number(inputValue.current.value) < list().length) {
+              setNum(0);
+              setIndex(Number(inputValue.current.value) - 1);
+            } else {
+              if (indexPage == null) {
+                setNum(Number(inputValue.current.value) - 3);
+              } else {
+                setNum(Number(inputValue.current.value) - 3 - indexPage);
+              }
+              setIndex(Math.ceil(list().length / 2) - 1);
+            }
+          }
+        }
+      }
+      inputValue.current.value = null;
+    }
 
-      {pageRange.map((page: any, index: any) => (
-        <button
-          key={index}
-          className={page === currentPage ? 'active' : ''}
-          onClick={() => handlePageChange(page)}
-        >
-          {page}
+    useEffect(() => {
+      if (indexPage != null) {
+        select(indexPage);
+      } else {
+        select(defaultCurrent);
+      }
+    });
+
+    useEffect(() => {
+      setArr(list);
+    }, [num]);
+
+    return (
+      <div className={Css['pagination']}>
+        <button onClick={() => leftGo()}>
+          <Icon name="arrow-leftdanjiantou-zuo" />
         </button>
-      ))}
+        <p style={{ display: num == 0 ? 'none' : 'block' }}>···</p>
+        <ul className="listClass" ref={uls}>
+          {arr.map((item: any, index: any) => {
+            return <li onClick={(e) => select(index)}>{item}</li>;
+          })}
+        </ul>
+        <p style={{ display: num + page >= pageSum ? 'none' : 'block' }}>···</p>
+        <button onClick={() => rightGo()}>
+          <Icon name="arrow-rightjiantou-you2" />
+        </button>
 
-      <button disabled={currentPage === totalPages} onClick={handleNextPage}>
-        Next
-      </button>
-    </div>
-  );
-});
+        <div style={{ display: showSumPage ? 'block' : 'none' }}>
+          <p>总页数：{pageSum}</p>
+        </div>
 
-Pagination.defaultProps = {
-  totalPages: 50,
-  maxVisiblePages: 5,
-  currentPage: 1,
-  onPageChange: () => {},
-};
+        <div className={Css['input']} style={{ opacity: go ? 1 : 0 }}>
+          <p>跳至</p>
+          <input className={Css['inp']} ref={inputValue} type="text" onBlur={() => blurNum()} />
+          <p>页</p>
+        </div>
+      </div>
+    );
+  },
+);
 
 export default Pagination;

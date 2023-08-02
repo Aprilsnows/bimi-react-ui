@@ -1,24 +1,38 @@
 ---
-title: Tabs组件
+title: Tabs 标签页
 nav:
-  title: 通用
+  title: Navigation 导航
   path: /component
 group:
-  path: /component
+  path: /navigation
 ---
 
-# Tabs 标签页
+# Switch 单选框
 
-按钮用于开始一个即时操作。
+> 分隔内容上有关联但属于不同类别的数据集合。
 
-#### 何时使用
+### 基本用法
 
-<p>分隔内容上有关联但属于不同类别的数据集合。</p>
+> 基础的、简洁的标签页
 
-## 基本使用
+<code src="./demo/index1.tsx" />
 
-<p>基础的、简洁的标签页。</p>
+### 选项卡样式
 
-<code src="./demo/index" />
+> 选项卡样式的标签页。
 
-<API></API>
+<code src="./demo/index2.tsx" />
+
+### 卡片化
+
+> 卡片化的标签页。
+
+<code src="./demo/index3.tsx" />
+
+### Tabs 参数说明
+
+<API src="./Tabs/index.tsx">
+
+### TabPane 参数说明
+
+<API src="./TabPane/index.tsx">

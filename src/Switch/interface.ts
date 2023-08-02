@@ -1,17 +1,24 @@
 export interface SwitchProps {
-  // 要想文档中有 api 必须这么写注释.
   /**
-   * @description 默认开关
+   * @description 宽度
+   * @default 75px
    */
-  checked?: Boolean;
+  width?: any;
   /**
-   * @description 开关回调函数
-   * @default (value) => void;
-   *
+   * @description 高度
+   * @default 35px
    */
-  onChange?: Function;
-}
-export interface SwitchStyle {
-  checked?: Boolean;
-  onChange?: Function;
+  height?: any;
+  /**
+   * @description 是否禁用
+   */
+  disabled?: boolean;
+  /**
+   * @description 初始化状态
+   */
+  value?: boolean;
+  /**
+   * @description 点击事件
+   */
+  handleClick?: Function;
 }

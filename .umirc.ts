@@ -5,8 +5,8 @@ import { defineConfig } from 'dumi';
 
 
 export default defineConfig({
-  base: '/bimi-react',
-  publicPath: '/bimi-react/',
+  base: './',
+  publicPath: './',
   title: 'bimi-react', //网站标题名
   // 网站标题旁边图片
   favicon:

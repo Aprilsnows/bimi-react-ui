@@ -1,36 +1,66 @@
-import React, { useState, FC, memo, useMemo } from 'react';
+import React, { useState, FC, memo } from 'react';
+import Css from './index.module.less';
+import Icon from '../Icon/index';
+import { MessageBoxProps } from './interface';
+import Button from '../Button';
+const MessageBox: FC<MessageBoxProps> = memo(
+  ({ messageTitle, messageMain, useHTMLString, handleSubmit, children }) => {
+    let [flag, setFlag] = useState(false);
+    let style = {
+      display: flag ? 'block' : 'none',
+    };
 
-import Modal from './demo/Modal';
+    function msgBoxShow() {
+      setFlag(true);
+    }
 
-import './Modal.css';
+    function mshBoxhied() {
+      setFlag(false);
+    }
 
-import { ModalProps, ModalStyle } from './interface';
+    function submit() {
+      if (handleSubmit) {
+        handleSubmit();
+      }
+      setFlag(false);
+    }
 
-const Mods: FC<ModalProps> = memo((props) => {
-  const { titles, message, onClose }: any = props;
-
-  return (
-    <div className="modal">
-      <div className="modal-content">
-        <div className="modal-header">
-          <h3>{titles}</h3>
-          <button className="modal-close" onClick={onClose}>
-            X
-          </button>
+    return (
+      <div className={Css.msgbox}>
+        <div
+          className={Css.switch}
+          onClick={() => {
+            msgBoxShow();
+          }}
+        >
+          {children || '显示弹窗'}
         </div>
-        <div className="modal-body">
-          <p>{message}</p>
-        </div>
-        <div className="modal-footer">
-          <button onClick={onClose}>确定</button>
+        <div className={Css.msgbox_main} style={style}>
+          <div className={Css.mack}>
+            <div className={Css.content}>
+              <div className={Css.title}>
+                <span>{messageTitle || '标题'}</span>
+                <i className={Css.icon} onClick={() => mshBoxhied()}>
+                  <Icon name="closeguanbi" />
+                </i>
+              </div>
+              <div className={Css.text}>
+                {messageMain ? (useHTMLString ? messageMain : String(messageMain)) : '内容'}
+              </div>
+              <div className={Css.submit}>
+                <Button type="success" handleClick={submit}>
+                  确认
+                </Button>
+                <Button type="danger" handleClick={mshBoxhied}>
+                  取消
+                </Button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  );
-});
-Mods.defaultProps = {
-  titles: '弹窗标题',
-  message: '这是一段弹窗内容',
-  onClose: () => {},
-};
-export default Mods;
+    );
+  },
+);
+
+export default MessageBox;
