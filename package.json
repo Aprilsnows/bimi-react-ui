@@ -1,5 +1,5 @@
 {
-  "private": false,
+  "private": true,
   "name": "bimi-react",
   "version": "1.0.0",
   "homepage":".",
