@@ -1,4 +1,4 @@
-<!-- ---
+---
 title: bimi-react
 order: 10
 hero:
@@ -22,4 +22,4 @@ footer: Open-source MIT Licensed | Copyright © 2023<br />Powered by Bing
 ---
 <h4 style="text-align: center">基于 React + TypeScript 开发</h4>
 <h4 style="text-align: center">一个特别的开源项目</h4>
-<h4 style="text-align: center">在这里，或许你能看到不一样的东西</h4> -->
+<h4 style="text-align: center">在这里，或许你能看到不一样的东西</h4>
