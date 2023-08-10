@@ -1,6 +1,6 @@
 ---
 hero:
-  title: Book React
+  title: Bimi-React-Ui
   desc: 一套轻量级的React UI 组件库
   actions:
     - text: Getting Started
@@ -17,6 +17,3 @@ features:
     desc: 支持React/React Native
 footer: Open-source MIT Licensed | Copyright  2023<br />Powered by [dumi](https://d.umijs.org)
 ---
-
-
-## Hello react-element-ui!
