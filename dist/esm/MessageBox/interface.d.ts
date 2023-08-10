@@ -1,25 +1,20 @@
-export interface ModalProps {
+export interface MessageBoxProps {
     /**
-     * @description 按钮主题
-     * @default primary
-     * @default
+     * @description 标题
      */
-    titles?: String;
+    messageTitle?: string;
     /**
-     * @description 主体内容
-     * @default
-     *
+     * @description 内容
      */
-    message?: String;
+    messageMain?: any;
     /**
-     * @description 点击回调
-     * @default
-     *
+     * @description 内容是否支持html片段
+     * @default false
      */
-    onClose?: Function;
-}
-export interface ModalStyle {
-    titles?: String;
-    message?: String;
-    onClose?: Function;
+    useHTMLString?: boolean;
+    /**
+     * @description 提交事件
+     */
+    handleSubmit?: any;
+    children?: any;
 }

@@ -1,24 +1,34 @@
 export interface PaginationProps {
     /**
-     * @description 总数据
+     * @description 默认的当前页数
+     * @default 1
      */
-    totalPages?: Number;
+    defaultCurrent?: number;
     /**
-     * @description 点击回调
+     * @description 默认的每页条数
+     * @default 10
      */
-    onPageChange?: Function;
+    defaultPageSize?: number;
     /**
-     * @description 展示的个数
+     * @description 数据总数
+     * @default 0
      */
-    maxVisiblePages?: Number;
+    total: number;
     /**
-     * @description 当前的页数
+     * @description 显示几页
+     * @default 5
      */
-    currentPage?: Number;
-}
-export interface PaginationStyle {
-    totalPages?: Number;
-    maxVisiblePages?: Number;
-    currentPage?: Number;
-    onPageChange?: Function;
+    pagelength?: number;
+    /**
+     * @description 获取当前页数
+     */
+    handleClick?: any;
+    /**
+     * @description 是否显示总页面数
+     */
+    showSumPage?: boolean;
+    /**
+     * @description 显示跳转
+     */
+    go?: boolean;
 }

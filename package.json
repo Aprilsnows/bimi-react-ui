@@ -1,6 +1,6 @@
 {
-  "private": true,
-  "name": "bimi-react",
+  "private": false,
+  "name": "bimi-react-ui",
   "version": "1.0.0",
   "homepage":".",
   "scripts": {
