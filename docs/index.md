@@ -1,25 +1,22 @@
 ---
-title: bimi-react
-order: 10
 hero:
-  title: bimi Design
-  desc: Just component, not UI
+  title: Book React
+  desc: 一套轻量级的React UI 组件库
   actions:
-    - text: 快速上手
-      link: /guide
-
+    - text: Getting Started
+      link: /components
 features:
   - icon: https://gw.alipayobjects.com/zos/bmw-prod/881dc458-f20b-407b-947a-95104b5ec82b/k79dm8ih_w144_h144.png
-    title: 学习
-    desc: study
+    title: 开箱即用
+    desc: 简单易用，降低使用者的代码量
   - icon: https://gw.alipayobjects.com/zos/bmw-prod/d60657df-0822-4631-9d7c-e7a869c2f21c/k79dmz3q_w126_h126.png
-    title: 总结
-    desc: summarize
+    title: 为组件化开发而生
+    desc: 结合MVVM组件化开发思想
   - icon: https://gw.alipayobjects.com/zos/bmw-prod/d1ee0c6f-5aed-4a45-a507-339a4bfe076c/k7bjsocq_w144_h144.png
-    title: 分享
-    desc: share
-footer: Open-source MIT Licensed | Copyright © 2023<br />Powered by Bing
+    title: 多方支持
+    desc: 支持React/React Native
+footer: Open-source MIT Licensed | Copyright  2023<br />Powered by [dumi](https://d.umijs.org)
 ---
-<h4 style="text-align: center">基于 React + TypeScript 开发</h4>
-<h4 style="text-align: center">一个特别的开源项目</h4>
-<h4 style="text-align: center">在这里，或许你能看到不一样的东西</h4>
+
+
+## Hello react-element-ui!
